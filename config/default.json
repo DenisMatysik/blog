@@ -1,0 +1,4 @@
+{
+    "port":4444,
+    "mongoUrl": "mongodb+srv://admin:87dideneQ000@cluster0.xib9bao.mongodb.net/blog?retryWrites=true&w=majority"
+}
