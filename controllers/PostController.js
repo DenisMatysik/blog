@@ -72,7 +72,7 @@ export const remove = async (req, res)=>{
 export const update = async (req, res)=>{
     try {
         const postId = req.params.id;
-        PostModel.findOneAndUpdate({
+        await PostModel.updateOne({
             _id:postId,
         }, {
             title: req.body.title,
@@ -80,19 +80,10 @@ export const update = async (req, res)=>{
             imageUrk: req.body.imageUrk,
             user: req.userId,
             tags: req.body.tags,
-        },{
-            returnDocument : "after"
-        }, (err, doc)=>{
-            if (err){
-            console.log(err);
-            return res.status(500).json({
-                message:"Не удалось обновить статью"});
-            }
-            if (!doc){
-                return res.status(404).json({
-                    message:"Не удалось найти статью."})
-            }})
-            res.json(doc)
+        })
+            res.json({
+                seccess: "updated"
+            })
     } catch (err){
         console.log(err)
         res.status(500).json({
